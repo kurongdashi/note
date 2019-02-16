@@ -17,6 +17,14 @@ ng-click="searchParkName($event)"
 
 ```
 
+- ui-router
+
+[ui-router 入门](https://www.cnblogs.com/VictorYe/p/7099165.html)
+[ui-router 深入](https://www.cnblogs.com/haogj/p/4885928.html)
+
+
+
+
 ## React 
 
 - jsx ,类似模版引擎 ``,可以在代码中直接jsx 变量赋值
@@ -55,7 +63,7 @@ import React from 'react'
 
 ```
 
-- 如果有多个插槽，这不是用children，因为自定义属性可以传入一个组件作为属性值 
+- 如果有多个插槽，不是用children，因为自定义属性可以传入一个组件作为属性值 
 
 ``` 
 <SplitPane
@@ -177,13 +185,18 @@ if(props.showTime){
 }
  
  ```
+ 
+
+ 
+ 
+ 
+ 
  ## 框架适用目录结构
  
  - 外层总路由，内层每个菜单，一个子路由
  
  
- ## SVN
-  - 创建新的分支
+
   
   
  
