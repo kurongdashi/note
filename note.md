@@ -121,6 +121,45 @@ this.setState((prevState, props) => ({
     }
 
 ```
+- 常用正则方法
+
+[正则使用](http://javascript.ruanyifeng.com/stdlib/regexp.html#toc3)
+
+1. string.replace(),脱敏,第二个参数中用$,代表捕获的分组
+``` 
+'13423882680'.replace(/^(\d{3})\w+(\w{4})$/,'$1****$2')
+
+"134****2680"
+
+```
+2. 常用预定义
+
+``` 
+大写取反
+\d [0-9] 
+\D [^0-9]
+\s 空格、换行
+\w 字母、数字、下划线
+
+{n} 正好n次
+{n,m} >n <m
+{n,} >n
+
+
+* 0个或多个
++ 1个或多个
+? 0 或者1个
+
+```
+3. 模式，默认是匹配到第一个就停止
+
+
+``` 
+i ignorecase 忽略大小写
+g global   全局匹配
+m mutilline 多行（跳过换行符继续匹配）
+
+```
 
 ## css 
  - overflow 属性误区 推荐使用auto,不用scroll
