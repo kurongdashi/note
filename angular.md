@@ -1,4 +1,33 @@
 
+## angular 
+
+- 强制刷新Dom ,$apply()使用 
+``` 
+ //强制刷新变量
+  $scope.$apply(function () {
+      $scope.showSelect=false;
+   })
+
+```
+- $event 事件获取
+
+``` 
+点击时，传入$event
+ng-click="searchParkName($event)"
+
+```
+
+- ui-router
+
+
+- 页面加载完成后执行
+ [页面加载完成后执行](https://www.cnblogs.com/bertha-zm/p/8534339.html)
+ 
+
+[ui-router 入门](https://www.cnblogs.com/VictorYe/p/7099165.html)
+[ui-router 深入](https://www.cnblogs.com/haogj/p/4885928.html)
+
+
 ## JS 
 - 光标移动行末，或选中文字
 ``` 
@@ -12,7 +41,7 @@
     }
 
 ```
-- 正则常用方法
+- 常用正则方法
 
 [正则使用](http://javascript.ruanyifeng.com/stdlib/regexp.html#toc3)
 
@@ -171,28 +200,6 @@ if(props.showTime){
  
  ```
  - css 按钮按下样式，:active
- 
-## Html,html5
-- 元标签的使用
-[元标签的使用](https://www.cnblogs.com/yumo1627129/p/7198968.html)
- ``` 
-  meta 标签 name content 属性
-  name属性，和网页本身有关,keywords,description
-  
-  meta 标签 http-equiv content 属性
-  http-equiv属性，和http请求有关，例如设置缓存，请求头，解析
-  //注意是key中的值是大写开头
-  <meta http-equiv="Content-Type" content="text/html;charset=信息参数"/> 
-  //不使用缓存
-  <meta http-equiv="Cache-Control"content="no-cache"/>
-  
-      
-  
-  
-  ```  
-
-
- 
  
 ## flex 布局
 

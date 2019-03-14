@@ -1,4 +1,21 @@
  ## React 
+ 
+ - 生命周期
+ [生命周期](https://www.cnblogs.com/qiaojie/p/6135180.html)
+ 
+ 1. componentWillReceiveProps 使用
+``` 
+ //组件props 更新时调用
+    componentWillReceiveProps(nextProps){
+
+        if(this.props.showTime){
+            document.body.style.overflow='hidden'
+        }else{
+            document.body.style.overflow='auto'
+        }
+    }
+```
+ 
  - jsx ,类似模版引擎 ``,可以在代码中直接jsx 变量赋值
  
  ``` 
