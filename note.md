@@ -54,7 +54,7 @@ m mutilline 多行（跳过换行符继续匹配）
 
 ###  兼容性问题
 
-#### 手机端 IOS,android 浏览器
+### 手机端 IOS,android 浏览器
 
 [兼容性问题](https://www.jianshu.com/p/31e53df2ecce)
 
@@ -180,12 +180,12 @@ if(props.showTime){
   name属性，和网页本身有关,keywords,description
   
   meta 标签 http-equiv content 属性
+  
   http-equiv属性，和http请求有关，例如设置缓存，请求头，解析
   //注意是key中的值是大写开头
   <meta http-equiv="Content-Type" content="text/html;charset=信息参数"/> 
   //不使用缓存
   <meta http-equiv="Cache-Control"content="no-cache"/>
-  
       
   
   

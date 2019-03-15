@@ -261,3 +261,35 @@ export default connect(mapStateToProps,mapDispatchToProps)(Index);
  
  
   
+  
+## create-react-app 
+
+[create-react-app 配置](https://www.jianshu.com/p/e09b2c57cf20)
+
+1. 配置代理proxy
+``` 
+package.js 中加入
+
+"proxy":{
+    "/api":{
+      "target":"http://10.101.222.10",
+    }
+  },
+
+```
+2. 使用antd [使用antd](https://ant.design/docs/react/use-with-create-react-app-cn)
+
+``` 
+/ package.json 文件
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    // 加入配置
+    "plugins": [
+    // 如果使用了 定制颜色功能 将 "css" => true 同时需要配置 less
+      ["import", { "libraryName": "antd-mobile", "style": "css" }]
+    ]
+  }
+```
+  
