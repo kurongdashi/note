@@ -89,6 +89,38 @@
  
  ```
  - mixin 使用
+ 
+ - props 验证和使用默认属性
+ [验证和使用默认属性](https://react.docschina.org/docs/typechecking-with-proptypes.html)
+``` 
+//使用默认属性
+    static defaultProps={
+        btnType:'',
+        leftBtnText:'放弃',
+        rightBtnText:'确认购买',
+    }
+
+```
+## React 使用
+
+1. 弹窗关闭事件处理
+
+``` 
+
+ this.state={
+            show:this.props.show,
+            dialogType:'DEF',
+            title:'新人领劵'
+
+        }
+
+//因为该弹窗只弹一次，所以关闭弹窗交由内部处理，如果是和外组件有交互，则必须由外组件处理
+    closeDialog=()=>{
+        this.setState({show:false})
+    }
+
+
+```
 
  
  
@@ -255,6 +287,12 @@ export default connect(mapStateToProps,mapDispatchToProps)(Index);
           </HashRouter>
   
   ```
+- hash路由使用微信分享问题，微信会截取掉 #，导致路由只能跳转到首页(android正常，ios异常)
+[hashRouter微信分享](https://www.cnblogs.com/xyyt/p/7533091.html)
+``` 
+
+```
+
  
  
  
@@ -292,4 +330,22 @@ package.js 中加入
     ]
   }
 ```
+  
+ ## antd 使用
+1. webpack 按需加载配置
+ [按需加载配置](https://www.cnblogs.com/camille666/p/webpack_antd.html)
+ 
+ 
+ 
+ ## swiper使用
+ 
+ 1. 初始化swiper必须等待数据加载完成，将列表dom全部渲染完成后，执行
+ ``` 
+ initSwiper() {
+         let mySwiper = new Swiper('.swiper-container', {
+             slidesPerView: "auto",
+             spaceBetween: 0,
+         });
+     }
+ ```
   

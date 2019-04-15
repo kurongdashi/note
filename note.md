@@ -137,15 +137,18 @@ m mutilline 多行（跳过换行符继续匹配）
   ```
   
 - 手机屏幕适配方案，rem 方案
-
+    [rem 方案](https://www.cnblogs.com/dannyxie/p/6640903.html)
+1.  根元素size（rem） = (实际文档宽/设计稿宽) * 50 = (实际尺寸/设计尺寸) *50  
+x50是为了根元素最小尺寸大于12px,所以实际尺寸= 设计尺寸/50 *rem
+    
  ``` 
-  设计稿一般以iphone6 屏幕作为参考，当为iphone 屏幕宽度时
-  设置,html根标签font-size 为某个基准值,其他屏幕按照这个比值设置
-  
- window.onresize=function(){
-     
-     window.clientWidth / 100 
- }
+ <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+ 
+  <script>
+        window.onresize=function () {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 375*50 + 'px';
+        }
+    </script>
  
  ```
  - 隐藏input 光标，显示文字,用文字阴影替代颜色
@@ -171,6 +174,17 @@ if(props.showTime){
  
  ```
  - css 按钮按下样式，:active
+ 
+ 
+ -  line-height 属性和pading-top 有冲突，实现文字居中，推荐选择padding，line-height
+ 会被子元素继承，导致样式混乱，解决方案
+ ``` 
+ //子元素
+  line-height: normal;
+ 
+ ```
+ 
+ - 兼容不能使用flex布局左右自适应
  
 ## Html,html5
 - 元标签的使用
@@ -198,6 +212,17 @@ if(props.showTime){
 
   [flex布局](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
  
+ 1. item 平均分布，给父级设置 justify-content:space-between; flex-wrap:wrap;
+ 
+ ``` 
+    .list {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap:wrap;
+          li {
+             display: inline-block;
+            }
+ ```
  
  
  
