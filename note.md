@@ -98,6 +98,13 @@ m mutilline 多行（跳过换行符继续匹配）
  
  4. ios 下对非可点击元素，不会触发点击事件，so,需要规范标签的语义化
  
+ 5.关闭window问题
+ [关闭window问题](https://www.jianshu.com/p/9dc2752194b8)
+ 
+ ``` 
+  window.location.href="about:blank";
+  window.close();
+ ```
  
      
 
@@ -130,10 +137,33 @@ m mutilline 多行（跳过换行符继续匹配）
  ```
  - 浏览器滚动条，也是
  [滚动条样式](https://www.cnblogs.com/yclblog/p/6806496.html)
+ [滚动条样式](https://segmentfault.com/a/1190000012800450)
   ``` 
-      &::scrollbar{
-           font-size: 16px;
-      }
+     /*定义滚动条高宽及背景
+      高宽分别对应横竖滚动条的尺寸*/
+     ::-webkit-scrollbar
+     {
+         width:16px;
+         height:16px;
+         background-color:#F5F5F5;
+     }
+     /*定义滚动条轨道
+      内阴影+圆角*/
+     ::-webkit-scrollbar-track
+     {
+         -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3);
+         border-radius:10px;
+         background-color:#F5F5F5;
+     }
+     /*定义滑块
+      内阴影+圆角*/
+     ::-webkit-scrollbar-thumb
+     {
+         border-radius:10px;
+         -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);
+         background-color:#555;
+     }
+
   ```
   
 - 手机屏幕适配方案，rem 方案
@@ -184,7 +214,19 @@ if(props.showTime){
  
  ```
  
- - 兼容不能使用flex布局左右自适应
+ - 父元素与子元素之间的margin-top问题,同级或者嵌套的盒元素，
+ 并且它们之间没有非空内容、Padding或Border分隔,他们合并margin
+  [margin-top](https://www.cnblogs.com/ranyonsue/p/5461749.html)
+  ``` 
+  
+  .fu{
+       overflow：hidden；
+       .zi{
+        
+       }
+  }
+  
+  ```
  
 ## Html,html5
 - 元标签的使用
@@ -217,8 +259,8 @@ if(props.showTime){
  ``` 
     .list {
           display: flex;
-          justify-content: space-between;
-          flex-wrap:wrap;
+          justify-content: space-between;//空隙均分
+          flex-wrap:wrap;//换行
           li {
              display: inline-block;
             }
