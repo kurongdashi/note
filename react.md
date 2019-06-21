@@ -349,3 +349,14 @@ package.js 中加入
      }
  ```
   
+  ## jsx 开发中
+  
+  - 使用marquee 标签时，无法设置属性，需要动态设置
+  ``` 
+  //设置marquee,因为jsx不支持marquee标签设置属性
+      setMarquee(){
+          let domMar=document.getElementById('marquee');
+          domMar.scrollAmount='3'
+      }
+  
+  ```

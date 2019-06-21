@@ -51,6 +51,35 @@ g global   全局匹配
 m mutilline 多行（跳过换行符继续匹配）
 
 ```
+- 对象的深拷贝
+``` 
+for ...in 会遍历对象继承的属性（前提这些属性可以被遍历）
+Obj.hasOwnProperty(),判断是否是自身的属性
+
+function deepCopy(obj){
+    // 判断要拷贝的对象是数组
+    let result=Array.isArray(obj)?[]:{};
+    for(let key in obj){
+        if(obj.hasOwnProperty(key)){
+            // 对象的属性是否是对象
+            if(typeof obj[key]==='object'){
+                result[key]=deepCopy(obj[key])
+            }else{
+                result[key]=obj[key];
+            }
+        
+        }
+    
+    }
+    return result;
+
+}
+
+
+```
+
+
+
 
 ###  兼容性问题
 
@@ -68,9 +97,9 @@ m mutilline 多行（跳过换行符继续匹配）
  inTime=inTime.replace(/-/g,'/');
   let time=new Date(inTime).getTime();
 ``` 
-2. 手机软键盘问题
+2. 手机软键盘问题,ios下fixed定位缺陷，尽量使用absolute
 
-软键盘唤起后，页面fixed 元素失效，变成absolute，将滚动区域和input区域分离
+* 问题1：软键盘唤起后，将页面顶上去，留出一个软件盘的位置，页面其他元素位置错误
 
  ``` 
  <body class="layout-scroll-fixed">
@@ -94,6 +123,15 @@ m mutilline 多行（跳过换行符继续匹配）
  </body>
  
  ```
+ * 问题2：软件盘结束后，页面留白问题,需要监听input的onblur事件，js控制页面滚动到原点
+ 
+ [页面留白问题](https://www.jianshu.com/p/0953157ca407)
+ ``` 
+  onBlur () {
+         window.scrollTo(0,0)
+       }
+ ```
+ 
  3. 300ms 延时，fastclick
  
  4. ios 下对非可点击元素，不会触发点击事件，so,需要规范标签的语义化
@@ -105,8 +143,25 @@ m mutilline 多行（跳过换行符继续匹配）
   window.location.href="about:blank";
   window.close();
  ```
+ 6. IE浏览器兼容问题
+ [IE浏览器兼容问题](https://www.cnblogs.com/cxyc/p/10592957.html)
  
-     
+ ``` 
+ IE9 以下都使用 注释
+ <!-- [if lte IE 9 ]> 处理xxx <!endif>
+ 
+ <!--[if lt IE 9]> 
+ <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+ <![endif]-->
+ ```
+ 7. 微信中对img 标签点击放大问题：Android底层默认支持点击放大，ios中无此问题
+ [img 标签点击放大问题](https://www.jianshu.com/p/78af66ca9149)
+ ``` 
+  if(e){
+            e.preventDefault();
+       }
+ ```    
+   
 
 
 ## css 
@@ -114,7 +169,7 @@ m mutilline 多行（跳过换行符继续匹配）
 
 [overflow 属性误区](http://www.w3school.com.cn/cssref/pr_pos_overflow.asp)
 [生效](https://blog.csdn.net/diudiu5201/article/details/54666809)
- - 怎么应用vertical-align，才能生效,父元素设置line-height
+ 1. 怎么应用vertical-align，才能生效,父元素设置line-height
  
  ``` 
  img 标签和文字使用 vertical-align：top
@@ -129,13 +184,13 @@ m mutilline 多行（跳过换行符继续匹配）
  
  
  
- - placeholder 是input元素的伪类，可以通过伪类方式设置属性
+ 2. placeholder 是input元素的伪类，可以通过伪类方式设置属性
  ``` 
      &::placeholder{
           font-size: 16px;
      }
  ```
- - 浏览器滚动条，也是
+ 3. 浏览器滚动条，也是
  [滚动条样式](https://www.cnblogs.com/yclblog/p/6806496.html)
  [滚动条样式](https://segmentfault.com/a/1190000012800450)
   ``` 
@@ -165,8 +220,11 @@ m mutilline 多行（跳过换行符继续匹配）
      }
 
   ```
+  4. 文字换行和空白换行控制
+      [文字换行](https://www.cnblogs.com/dfyg-xiaoxiao/p/9640422.html)  
   
-- 手机屏幕适配方案，rem 方案
+  
+### 手机屏幕适配方案，rem 方案
     [rem 方案](https://www.cnblogs.com/dannyxie/p/6640903.html)
 1.  根元素size（rem） = (实际文档宽/设计稿宽) * 50 = (实际尺寸/设计尺寸) *50  
 x50是为了根元素最小尺寸大于12px,所以实际尺寸= 设计尺寸/50 *rem
@@ -271,6 +329,16 @@ if(props.showTime){
  ## 框架适用目录结构
  
  - 外层总路由，内层每个菜单，一个子路由
+ 
+ ## 微信公众号开发
+ 
+ - 微信分享地址，如果是路由方式，则会被微信修改地址，会去掉#/后面参数
+  a.处理方式，在进入主页面是，重新组装路由
+  b.独立url,不适应路由方式
+  
+ - 微信中识别图片，只能是img标签，背景图无法识别
+ 
+ 
  
  
 
