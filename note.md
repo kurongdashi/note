@@ -51,6 +51,8 @@ g global   全局匹配
 m mutilline 多行（跳过换行符继续匹配）
 
 ```
+### JS 面向对象
+
 - 对象的深拷贝
 ``` 
 for ...in 会遍历对象继承的属性（前提这些属性可以被遍历）
@@ -78,7 +80,110 @@ function deepCopy(obj){
 
 ```
 
+- 双向数据绑定原理
 
+[双向数据绑定原理](https://www.cnblogs.com/lvmylife/p/7474374.html)
+
+1. Object.defineProperty(obj,attr,{set(nVal),get())
+
+- 判断变量是否为对象
+1. Object(param),将参数包装成对象，如果参数是对象则直接返回
+
+``` 
+function isObject(value) {
+  return value === Object(value);
+}
+
+```
+2. 对象属性数量
+``` 
+Object.keys(obj).length;
+
+```            
+3. new 命令原理解析
+``` 
+new 创建一个空对象，然后将空对象的原型指向构造函数的prototype，将空对象赋值给this
+function getMessage() {
+  return 'this is a message';
+}
+
+var msg = new getMessage();
+
+msg // {}
+typeof msg 
+
+new 命令创建对象，函数内部会有new.target==函数名
+
+```
+4. 内层（2层及以上）函数的this其实是指向顶层window对象的
+
+5. 避免对象实例方法覆盖原型对象方法，将直接调用原型方法，绑定对象就行
+``` 
+Object.prototype.hasOwnProperty.call(obj, 'toString') //
+
+```
+6. 取数组中最大值
+
+``` 
+var a = [10, 2, 4, 15, 9];
+Math.max.apply(null, a) // 15
+
+```
+7. prototype指向原型对象
+
+``` 
+var MyArray = function () {};
+MyArray.prototype = new Array();
+MyArray.prototype.constructor = MyArray;
+
+#constructor属性表示原型对象与构造函数之间的关联关系，如果修改了原型对象，一般会同时修改
+
+```
+8. instanceof 判断对象是否来着构造函数new出来的，但是由于instanceof检查整个原型链
+
+9.  创建对象Object.create(A)，参数A可以是普通对象，也可以是原型对象，生成的对象继承参数对象
+
+10. __proto__ ,浏览器私有属性，指向对象原型，可读写
+
+11. 模块化设计原理，利用立即指向函数封装私有方法
+``` 
+var moudel=(function($,window){
+    a(){}
+    b(){}
+    
+    return {
+        a:a(),
+        b:b()
+    }
+
+})(jQuery,window)
+
+```
+
+### 网络通信ajax
+
+``` 
+//创建请求对象 status=0
+var xhr=new XMLHttpRequest();
+//监听readyState状态
+xhr.onreadystatechange=change;
+
+function change(){
+    //通信成功
+    if(xhr.readystate==4){
+        //返回成功
+        if(xhr.status==200){
+            console.log(xhr.responseText)
+        }
+    }
+}
+xhr.onerror=err;
+// status=1
+xhr.open('get',http://xxxx)
+// status=2
+xhr.send()
+
+```
 
 
 ###  兼容性问题
